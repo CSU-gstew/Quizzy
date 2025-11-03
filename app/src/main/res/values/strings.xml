@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Project_02</string>
+    <string name="welcome_to_quizzy_please_sign_in">Welcome to Quizzy! Please Sign In</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
 </resources>
