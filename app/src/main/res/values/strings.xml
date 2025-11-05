@@ -4,4 +4,9 @@
     <string name="username">Username</string>
     <string name="password">Password</string>
     <string name="login">Login</string>
+    <string name="main_menu">Main Menu</string>
+    <string name="play_quizzes">Play Quizzes</string>
+    <string name="sign_out">Sign Out</string>
+    <string name="leaderboard">Leaderboard</string>
+    <string name="view_scores">View Scores</string>
 </resources>

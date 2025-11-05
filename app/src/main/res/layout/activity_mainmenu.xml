@@ -1,0 +1,98 @@
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <TextView
+        android:id="@+id/titleMainMenuTextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dip"
+        android:layout_marginTop="72dp"
+        android:gravity="center"
+        android:text="@string/main_menu"
+        android:textColor="@color/black"
+        android:textSize="42sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/playQuizzesButton"
+        android:layout_width="0dp"
+        android:layout_height="64dp"
+        android:layout_marginHorizontal="32dp"
+        android:text="@string/play_quizzes"
+        android:backgroundTint="@color/dark_blue"
+        app:strokeColor="@color/black"
+        app:strokeWidth="2dp"
+        android:layout_marginTop="20dp"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        app:cornerRadius="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/titleMainMenuTextView"
+        app:layout_constraintBottom_toTopOf="@id/viewScoresButton"
+        app:layout_constraintVertical_chainStyle="packed"/>
+
+    <Button
+        android:id="@+id/viewScoresButton"
+        android:layout_width="0dp"
+        android:layout_height="64dp"
+        android:textColor="@color/white"
+        android:layout_marginHorizontal="32dp"
+        android:layout_marginTop="20dp"
+        android:text="@string/view_scores"
+        android:textSize="20sp"
+        android:backgroundTint="@color/dark_blue"
+        app:strokeColor="@color/black"
+        app:strokeWidth="2dp"
+        app:cornerRadius="16dp"
+        android:elevation="8dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/playQuizzesButton"
+        app:layout_constraintBottom_toTopOf="@id/leaderboardButton" />
+
+    <Button
+        android:id="@+id/leaderboardButton"
+        android:layout_width="0dp"
+        android:layout_height="64dp"
+        android:layout_marginHorizontal="32dp"
+        android:layout_marginTop="20dp"
+        android:text="@string/leaderboard"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:backgroundTint="@color/dark_blue"
+        app:strokeColor="@color/black"
+        app:strokeWidth="2dp"
+        app:cornerRadius="16dp"
+        android:elevation="8dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/viewScoresButton"
+        app:layout_constraintBottom_toTopOf="@id/signOutButton" />
+
+    <Button
+        android:id="@+id/signOutButton"
+        android:layout_width="0dp"
+        android:layout_height="64dp"
+        android:layout_marginHorizontal="32dp"
+        android:layout_marginBottom="32dp"
+        android:text="@string/sign_out"
+        android:textSize="20sp"
+        android:backgroundTint="@color/dark_blue"
+        android:textColor="@color/white"
+        app:strokeColor="@color/black"
+        app:strokeWidth="2dp"
+        app:cornerRadius="16dp"
+        android:elevation="8dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -12,15 +12,14 @@
     <TextView
         android:id="@+id/titleLoginTextView"
         android:layout_width="match_parent"
-        android:layout_height="150dip"
-        android:layout_margin="16dip"
-        android:layout_marginBottom="24dip"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:layout_marginBottom="24dp"
+        android:paddingHorizontal="16dp"
         android:gravity="center"
         android:text="@string/welcome_to_quizzy_please_sign_in"
         android:textSize="42sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:textStyle="bold" />
 
 
     <EditText
@@ -57,7 +56,9 @@
         android:layout_height="105dip"
         android:layout_margin="16dip"
         android:text="@string/login"
+        app:cornerRadius="16dp"
         android:textSize="32sp"
+        android:backgroundTint="@color/dark_blue"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/passwordLoginEditText" />
