@@ -1,6 +1,11 @@
 package com.example.project_02;
+import android.os.Bundle;
+import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.Activity;
-
-public class LogInActivity extends Activity {
+public class LogInActivity extends AppCompatActivity {
+    @Override
+    protected void onCreate(Bundle savedInstanceState){
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_log_in);
+    }
 }
