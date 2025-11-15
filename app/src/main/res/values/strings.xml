@@ -9,4 +9,5 @@
     <string name="sign_out">Sign Out</string>
     <string name="leaderboard">Leaderboard</string>
     <string name="view_scores">View Scores</string>
+    <string name="create_account">Create Account</string>
 </resources>
