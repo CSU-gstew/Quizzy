@@ -19,7 +19,24 @@ import com.example.project_02.databinding.ActivityLogInBinding;
 public class LogInActivity extends AppCompatActivity {
     private ActivityLogInBinding binding;
 
+    private QuizzyRepository repository;
 
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        binding = ActivityLogInBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
+
+        repository = QuizzyRepository.getRepository(getApplication());
+
+        binding.loginButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                verifyUser();
+
+            }
+        });
+    }
 }
 
 

@@ -1,4 +1,4 @@
 package com.example.project_02.viewHolders;
 
-public class QuizzyViewHolder {
+public class QuizzyLogViewModel {
 }
