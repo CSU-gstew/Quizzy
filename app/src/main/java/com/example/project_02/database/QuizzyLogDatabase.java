@@ -76,7 +76,7 @@ public abstract class QuizzyLogDatabase extends RoomDatabase {
         }
     };
 
-    public abstract QuizzyLogDAO quizzyLogDao();
+    public abstract QuizzyLogDAO quizzyLogDAO();
 
     public abstract UserDAO userDAO();
 }

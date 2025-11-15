@@ -6,6 +6,7 @@ import android.util.Log;
 import androidx.lifecycle.LiveData;
 
 import com.example.project_02.MainActivity;
+import com.example.project_02.database.entities.QuizzyLog;
 import com.example.project_02.database.entities.User;
 
 import java.util.ArrayList;
