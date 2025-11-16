@@ -58,18 +58,33 @@ public class LogInActivity extends AppCompatActivity {
                 return;
             }
 
+            /**
             // Successful login and proceed to Main Activity
             saveLoggedInUser(user.getId());
             startActivity(MainActivity.mainActivityIntentFactory(LogInActivity.this, user.getId()));
+            finish();
+            **/
+
+            // Successful login and proceed to main menu Activity
+            saveLoggedInUser(user.getId());
+            //startActivity(MainMenuActivity.mainMenuActivityIntentFactory(LogInActivity.this, user.getId()));
+            // Somehow the above line still sent the user back to the main activity
+            // Replaced it with the following line, should work properly
+            startActivity(new Intent(this, MainMenuActivity.class));
             finish();
         });
     }
 
     // Method for saving the logged in user
     private void saveLoggedInUser(int userId){
+        //Commented this out and modified it to see if it takes the user to the main menu Activity after logging in
+        //SharedPreferences sp = getApplicationContext()
+        //        .getSharedPreferences(getString(R.string.preference_file_key), Context.MODE_PRIVATE);
+        //sp.edit().putInt(getString(R.string.preference_userId_key), userId).apply();
         SharedPreferences sp = getApplicationContext()
                 .getSharedPreferences(getString(R.string.preference_file_key), Context.MODE_PRIVATE);
         sp.edit().putInt(getString(R.string.preference_userId_key), userId).apply();
+
     }
 
     private void toastMaker(String message) {
