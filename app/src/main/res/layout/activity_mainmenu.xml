@@ -4,7 +4,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-
     <TextView
         android:id="@+id/titleMainMenuTextView"
         android:layout_width="0dp"
@@ -74,8 +73,7 @@
         android:elevation="8dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/viewScoresButton"
-        app:layout_constraintBottom_toTopOf="@id/signOutButton" />
+        app:layout_constraintTop_toBottomOf="@id/viewScoresButton" />
 
     <Button
         android:id="@+id/signOutButton"
