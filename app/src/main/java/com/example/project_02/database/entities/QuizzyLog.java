@@ -5,6 +5,8 @@ import androidx.room.PrimaryKey;
 
 import com.example.project_02.database.QuizzyLogDatabase;
 
+import androidx.room.Ignore;
+
 import java.time.LocalDateTime;
 import java.util.Objects;
 
@@ -22,6 +24,9 @@ public class QuizzyLog {
     private LocalDateTime date;
     private int userId;
 
+
+    public QuizzyLog(){}
+    @Ignore
     public QuizzyLog(String exercise, double weight, int reps, int userId) {
         //this.exercise = exercise;
         //this.weight = weight;
