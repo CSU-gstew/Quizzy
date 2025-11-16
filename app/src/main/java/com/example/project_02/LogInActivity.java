@@ -5,11 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.os.Bundle;
-import android.view.View;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.LiveData;
 
 import com.example.project_02.database.QuizzyLogRepository;
@@ -70,7 +67,7 @@ public class LogInActivity extends AppCompatActivity {
             //startActivity(MainMenuActivity.mainMenuActivityIntentFactory(LogInActivity.this, user.getId()));
             // Somehow the above line still sent the user back to the main activity
             // Replaced it with the following line, should work properly
-            startActivity(new Intent(this, MainMenuActivity.class));
+            startActivity(new Intent(this, LandingPage.class));
             finish();
         });
     }
