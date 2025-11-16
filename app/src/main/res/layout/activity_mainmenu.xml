@@ -56,15 +56,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/playQuizzesButton"
-        app:layout_constraintBottom_toTopOf="@id/leaderboardButton" />
+        app:layout_constraintBottom_toTopOf="@id/adminButton" />
 
     <Button
-        android:id="@+id/leaderboardButton"
+        android:id="@+id/adminButton"
         android:layout_width="0dp"
         android:layout_height="64dp"
         android:layout_marginHorizontal="32dp"
         android:layout_marginTop="20dp"
-        android:text="@string/leaderboard"
+        android:text="For Admin Eyes ONLY!"
         android:textColor="@color/white"
         android:textSize="20sp"
         android:backgroundTint="@color/dark_blue"
