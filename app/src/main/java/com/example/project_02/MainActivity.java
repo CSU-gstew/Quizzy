@@ -4,40 +4,19 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.Intent;
 import android.os.Bundle;
-import android.text.method.ScrollingMovementMethod;
-import android.util.Log;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 import android.widget.Button;
 
-import androidx.activity.EdgeToEdge;
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 import androidx.lifecycle.LiveData;
-import androidx.lifecycle.ViewModelProvider;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.project_02.database.QuizzyLogRepository;
-import com.example.project_02.database.entities.QuizzyLog;
 import com.example.project_02.database.entities.User;
 import com.example.project_02.databinding.ActivityMainBinding;
-import com.example.project_02.databinding.ActivityMainmenuBinding;
-import com.example.project_02.viewHolders.QuizzyLogAdapter;
 import com.example.project_02.viewHolders.QuizzyLogViewModel;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -156,6 +135,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     // Display a menu when user chooses to log out (eventually will be used)
+    // TODO: Use this at some point (preferably for the landing page)
     private void showLogoutDialog() {
         AlertDialog.Builder alertBuilder = new AlertDialog.Builder(MainActivity.this);
         final AlertDialog alertDialog = alertBuilder.create();
