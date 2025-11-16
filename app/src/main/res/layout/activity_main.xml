@@ -7,6 +7,18 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/logDisplayRecyclerView"
+        android:layout_width="0dp"
+        android:layout_height="300dp"
+        android:layout_marginTop="16dp"
+        android:padding="2dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:listitem="@layout/quizzylog_recycler_item" />
+
     <TextView
         android:id="@+id/titleLoginTextView"
         android:layout_width="match_parent"
@@ -18,7 +30,7 @@
         android:textStyle="bold"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/loginButton"
         android:layout_width="match_parent"
         android:layout_height="105dip"
@@ -33,7 +45,7 @@
         app:layout_constraintTop_toBottomOf="@+id/titleLoginTextView"
         app:layout_constraintVertical_bias="0.399" />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/createAccountbutton"
         android:layout_width="match_parent"
         android:layout_height="105dp"

@@ -7,7 +7,15 @@
     <string name="main_menu">Main Menu</string>
     <string name="play_quizzes">Play Quizzes</string>
     <string name="sign_out">Sign Out</string>
-    <string name="leaderboard">Leaderboard</string>
     <string name="view_scores">View Scores</string>
+
+    <string name="preference_file_key">quizzy_prefs</string>
+    <string name="preference_userId_key">user_id</string>
+
     <string name="create_account">Create Account</string>
+    <string name="error_empty_fields">Please enter both username and password.</string>
+    <string name="error_invalid_password">Invalid password.</string>
+    <string name="error_invalid_username">%1$s is not a valid username.</string>
+
+
 </resources>
