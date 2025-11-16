@@ -18,17 +18,8 @@ import com.example.project_02.databinding.ActivityLogInBinding;
 
 public class LogInActivity extends AppCompatActivity {
     private ActivityLogInBinding binding;
-
     private QuizzyLogRepository repository;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState){
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_log_in);
-    }
-
-
-    /**
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,37 +28,48 @@ public class LogInActivity extends AppCompatActivity {
 
         repository = QuizzyLogRepository.getRepository(getApplication());
 
-        binding.loginButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                verifyUser();
-
-            }
-        });
+        binding.loginButton.setOnClickListener(v -> verifyUser());
     }
 
     private void verifyUser() {
-        String username = binding.userNameLoginEditText.getText().toString();
+        // These were added to the strings.xml file for later use
+        final String username = binding.userNameLoginEditText.getText().toString().trim();
+        final String password = binding.passwordLoginEditText.getText().toString();
 
-        if (username.isEmpty()) {
-            toastMaker("Username should not be blank");
+        // For empty fields
+        if (username.isEmpty() || password.isEmpty()) {
+            toastMaker(getString(R.string.error_empty_fields));
             return;
         }
-        LiveData<User> userObserver = repository.getUserByUsername(username);
-        userObserver.observe(this, user -> {
-            if (user != null) {
-                String password = binding.passwordLoginEditText.getText().toString();
-                if (password.equals(user.getPassword())) {
-                    startActivity(MainActivity.mainActivityIntentFactory(getApplicationContext(), user.getId()));
-                } else {
-                    toastMaker("Invalid password");
-                    binding.passwordLoginEditText.setSelection(0);
-                }
-            } else {
-                toastMaker(String.format("%s is not a valid username.", username));
-                binding.userNameLoginEditText.setSelection(0);
+
+        LiveData<User> userLiveData = repository.getUserByUsername(username);
+        userLiveData.observe(this, user -> {
+            userLiveData.removeObservers(this);
+
+            if (user == null) {
+                // For wrong username
+                toastMaker(getString(R.string.error_invalid_username, username));
+                return;
             }
+
+            if (!password.equals(user.getPassword())) {
+                // For wrong password
+                toastMaker(getString(R.string.error_invalid_password));
+                return;
+            }
+
+            // Successful login and proceed to Main Activity
+            saveLoggedInUser(user.getId());
+            startActivity(MainActivity.mainActivityIntentFactory(LogInActivity.this, user.getId()));
+            finish();
         });
+    }
+
+    // Method for saving the logged in user
+    private void saveLoggedInUser(int userId){
+        SharedPreferences sp = getApplicationContext()
+                .getSharedPreferences(getString(R.string.preference_file_key), Context.MODE_PRIVATE);
+        sp.edit().putInt(getString(R.string.preference_userId_key), userId).apply();
     }
 
     private void toastMaker(String message) {
@@ -77,7 +79,6 @@ public class LogInActivity extends AppCompatActivity {
     static Intent loginIntentFactory(Context context) {
         return new Intent(context, LogInActivity.class);
     }
-    **/
 }
 
 

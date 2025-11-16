@@ -31,6 +31,7 @@ import com.example.project_02.database.QuizzyLogRepository;
 import com.example.project_02.database.entities.QuizzyLog;
 import com.example.project_02.database.entities.User;
 import com.example.project_02.databinding.ActivityMainBinding;
+import com.example.project_02.databinding.ActivityMainmenuBinding;
 import com.example.project_02.viewHolders.QuizzyLogAdapter;
 import com.example.project_02.viewHolders.QuizzyLogViewModel;
 
@@ -41,88 +42,84 @@ import java.util.Locale;
 public class MainActivity extends AppCompatActivity {
 
     private static final String MAIN_ACTIVITY_USER_ID = "com.example.project_02.MAIN_ACTIVITY_USER_ID";
-    static final String SHARED_PREFERENCE_USERID_KEY = "com.example.project_02.SHARED_PREFERENCE_USERID_KEY";
-    static final String SAVED_INSTANCE_STATE_USERID_KEY = "com.example.project_02.SAVED_INSTANCE_STATE_USERID_KEY";
+    private static final String SAVED_INSTANCE_STATE_USERID_KEY = "loggedInUserId";
 
 
     private static final int LOGGED_OUT = -1;
     private ActivityMainBinding binding;
     private QuizzyLogRepository repository;
     private QuizzyLogViewModel quizzyLogViewModel;
+    private int loggedInUserId = LOGGED_OUT;
+    private User user;
 
+    public static final String TAG = "DAC_QUIZZYLOG";
 
     /**
      * This is where any variables for the application will be located
      * But for now, we're just focusing on the user/admin logging in/out
      * TODO: Implement any needed variables
      */
-    private int loggedInUserId = -1;
-    private User user;
 
-
-    public static final String TAG = "DAC_QUIZZYLOG";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_main);
 
-        Button loginButton = findViewById(R.id.loginButton);
-
-        loginButton.setOnClickListener(v -> {
-            Intent intent = new Intent(MainActivity.this, LogInActivity.class);
-            startActivity(intent);
-        });
-    }
-
-    /**
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        quizzyLogViewModel = new ViewModelProvider(this).get(QuizzyLogViewModel.class);
-
-
-        /**
-        // The following is code for the recycler view from gymlog
-        // Won't be used for now but I'll leave it here just in case
-        RecyclerView recyclerView = binding.logDisplayRecyclerView;
-        recyclerView.setAdapter(adapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        *
-
-        final QuizzyLogAdapter adapter = new QuizzyLogAdapter(new QuizzyLogAdapter.QuizzyLogDiff());
-
         repository = QuizzyLogRepository.getRepository(getApplication());
+
         loginUser(savedInstanceState);
 
-        quizzyLogViewModel.getAllLogsById(loggedInUserId).observe(this, quizzyLogs -> {
-            adapter.submitList(quizzyLogs);
-        });
-
-        // User is not logged in at this point, go to log in screen
-        if(loggedInUserId == -1){
-            Intent intent = LogInActivity.loginIntentFactory(getApplicationContext());
-            startActivity(intent);
+        // If not logged in
+        if (loggedInUserId == LOGGED_OUT) {
+            onLoggedOut();
+        } else {
+            onLoggedIn();
         }
-
-        updateSharedReference();
-
-        binding.logButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                getInformationFromDisplay();
-                insertQuizzyLogRecord();
-            }
-        });
-
     }
-    **/
 
+    // Once the user has been logged in succesfully
+    private void onLoggedIn() {
+        View loginButton = findViewById(R.id.loginButton);
+        if (loginButton != null) loginButton.setVisibility(View.GONE);
 
+        Toast.makeText(this, "Logged in (userId=" + loggedInUserId + ")", Toast.LENGTH_SHORT).show();
+
+        // TODO: This is where the app would take the user to the LandingPage Activity after logging in
+    }
+
+    // When no one is logged in
+    private void onLoggedOut() {
+        Button loginBtn = findViewById(R.id.loginButton);
+        if (loginBtn != null) {
+            loginBtn.setVisibility(View.VISIBLE);
+            loginBtn.setOnClickListener(v ->
+                    startActivity(LogInActivity.loginIntentFactory(MainActivity.this))
+            );
+        }
+    }
+
+    private int getSavedUserId() {
+        return getSharedPrefs().getInt(getString(R.string.preference_userId_key), LOGGED_OUT);
+    }
+
+    private void persistUserId(int userId) {
+        getSharedPrefs().edit()
+                .putInt(getString(R.string.preference_userId_key), userId).apply();
+    }
+
+    private SharedPreferences getSharedPrefs() {
+        return getApplicationContext()
+                .getSharedPreferences(getString(R.string.preference_file_key), Context.MODE_PRIVATE);
+    }
+
+    static Intent mainActivityIntentFactory(Context context, int userId) {
+        Intent intent = new Intent(context, MainActivity.class);
+        intent.putExtra(MAIN_ACTIVITY_USER_ID, userId);
+        return intent;
+    }
 
     private void loginUser(Bundle savedInstanceState) {
         // check shared preference for logged in user
@@ -152,39 +149,13 @@ public class MainActivity extends AppCompatActivity {
 
 
     @Override
-    protected void onSaveInstanceState(@NonNull Bundle outState){
-        super.onSaveInstanceState(outState);
+    protected void onSaveInstanceState(Bundle outState) {
         outState.putInt(SAVED_INSTANCE_STATE_USERID_KEY, loggedInUserId);
-        updateSharedReference();
+        super.onSaveInstanceState(outState);
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.logout_menu, menu);
-        return true;
-    }
 
-    @Override
-    public boolean onPrepareOptionsMenu(Menu menu) {
-        MenuItem item = menu.findItem(R.id.logoutMenuItem);
-        item.setVisible(true);
-        if (user == null) {
-            return false;
-        }
-        item.setTitle(user.getUsername());
-        item.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
-            @Override
-            public boolean onMenuItemClick(@NonNull MenuItem item) {
-
-                showLogoutDialog();
-                return false;
-
-            }
-        });
-        return true;
-    }
-
+    // Display a menu when user chooses to log out (eventually will be used)
     private void showLogoutDialog() {
         AlertDialog.Builder alertBuilder = new AlertDialog.Builder(MainActivity.this);
         final AlertDialog alertDialog = alertBuilder.create();
@@ -225,38 +196,22 @@ public class MainActivity extends AppCompatActivity {
         sharedPrefEditor.apply();
     }
 
-    static Intent mainActivityIntentFactory(Context context, int userId){
-        Intent intent = new Intent(context, MainActivity.class);
-        intent.putExtra(MAIN_ACTIVITY_USER_ID, userId);
-        return intent;
-    }
+
+    // The bottom two methods might be used later on
+    // Still need to decide if they could be useful at some point
 
     // TODO: Make this insert user/quiz information later on
     private void insertQuizzyLogRecord(){
         /**
-        // The following code comes from gymlog
-        // For now, this method shall remain incomplete
-        if(mExercise.isEmpty()){
-            return;
-        }
+         // The following code comes from gymlog
+         // For now, this method shall remain incomplete
+         if(mExercise.isEmpty()){
+         return;
+         }
 
-        GymLog log = new GymLog(mExercise, mWeight, mReps, loggedInUserId);
-        repository.insertGymLog(log);
-        **/
-    }
-
-    @Deprecated
-    private void updateDisplay(){
-        ArrayList<QuizzyLog> allLogs = repository.getAllLogsByUserId(loggedInUserId);
-        if(allLogs.isEmpty()){
-            //binding.logDisplayTextView.setText("Nothing to show, time to take a quiz!");
-        }
-        StringBuilder sb = new StringBuilder();
-        for(QuizzyLog log : allLogs){
-            sb.append(log);
-        }
-
-        //binding.logDisplayTextView.setText(sb.toString());
+         GymLog log = new GymLog(mExercise, mWeight, mReps, loggedInUserId);
+         repository.insertGymLog(log);
+         **/
     }
 
     // TODO: Make this retrieve user/quiz information later on
@@ -277,7 +232,5 @@ public class MainActivity extends AppCompatActivity {
             Log.d(TAG, "Error reading value from Reps edit text.");
         }
         **/
-
     }
-
 }
