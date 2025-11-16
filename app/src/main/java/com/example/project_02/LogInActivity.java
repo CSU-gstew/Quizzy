@@ -1,4 +1,6 @@
 package com.example.project_02;
+import android.os.Bundle;
+import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.content.Intent;
@@ -19,6 +21,14 @@ public class LogInActivity extends AppCompatActivity {
 
     private QuizzyLogRepository repository;
 
+    @Override
+    protected void onCreate(Bundle savedInstanceState){
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_log_in);
+    }
+
+
+    /**
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,6 +77,7 @@ public class LogInActivity extends AppCompatActivity {
     static Intent loginIntentFactory(Context context) {
         return new Intent(context, LogInActivity.class);
     }
+    **/
 }
 
 

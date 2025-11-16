@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
@@ -12,6 +13,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
+import android.widget.Button;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
@@ -63,6 +65,21 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        EdgeToEdge.enable(this);
+        setContentView(R.layout.activity_main);
+
+        Button loginButton = findViewById(R.id.loginButton);
+
+        loginButton.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, LogInActivity.class);
+            startActivity(intent);
+        });
+    }
+
+    /**
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
@@ -75,7 +92,7 @@ public class MainActivity extends AppCompatActivity {
         RecyclerView recyclerView = binding.logDisplayRecyclerView;
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        **/
+        *
 
         final QuizzyLogAdapter adapter = new QuizzyLogAdapter(new QuizzyLogAdapter.QuizzyLogDiff());
 
@@ -101,7 +118,10 @@ public class MainActivity extends AppCompatActivity {
                 insertQuizzyLogRecord();
             }
         });
+
     }
+    **/
+
 
 
     private void loginUser(Bundle savedInstanceState) {
@@ -257,5 +277,7 @@ public class MainActivity extends AppCompatActivity {
             Log.d(TAG, "Error reading value from Reps edit text.");
         }
         **/
+
     }
+
 }

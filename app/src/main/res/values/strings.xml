@@ -11,4 +11,5 @@
     <string name="view_scores">View Scores</string>
     <string name="preference_file_key">daclinkPreferenceFileNameQuizzyLog</string>
     <string name="preference_userId_key">daclinkPreferenceUserIdKeyQuizzyLog</string>
+    <string name="create_account">Create Account</string>
 </resources>
