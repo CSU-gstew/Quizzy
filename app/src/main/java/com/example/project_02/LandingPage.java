@@ -12,6 +12,10 @@ import android.view.View;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowCompat;
+import androidx.core.view.WindowInsetsCompat;
 import androidx.lifecycle.LiveData;
 
 import com.example.project_02.database.QuizzyLogRepository;
@@ -31,11 +35,10 @@ public class LandingPage extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_landing_page);
-
-        repository = QuizzyLogRepository.getRepository(getApplication());
-
         toolbar = findViewById(R.id.action_bar);
         setSupportActionBar(toolbar);
+        repository = QuizzyLogRepository.getRepository(getApplication());
+
 
         adminButton = findViewById(R.id.adminButton);
 
@@ -43,6 +46,9 @@ public class LandingPage extends AppCompatActivity {
         loadUserFromDatabase();
 
         setupButtons();
+    }
+    public static Intent landingPageIntentFactory(Context context, int userId) {
+        return new Intent(context, LandingPage.class);
     }
     private void readLoggedInUserFromSharedPreferences() {
         SharedPreferences prefs = getSharedPreferences(
