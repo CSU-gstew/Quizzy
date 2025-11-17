@@ -5,6 +5,7 @@
         android:id="@+id/logoutMenuItem"
         android:title="LOGGED IN"
         app:showAsAction="ifRoom"
-        app:titleTextColor="@color/white"
+        app:theme="@style/ToolbarTheme"
+        android:gravity="bottom"
         />
 </menu>

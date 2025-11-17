@@ -71,7 +71,9 @@ public class MainActivity extends AppCompatActivity {
 
         Toast.makeText(this, "Logged in (userId=" + loggedInUserId + ")", Toast.LENGTH_SHORT).show();
 
-        // TODO: This is where the app would take the user to the LandingPage Activity after logging in
+        Intent intent = LandingPage.landingPageIntentFactory(MainActivity.this, loggedInUserId);
+        startActivity(intent);
+        finish();
     }
 
     // When no one is logged in
