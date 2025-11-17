@@ -5,10 +5,14 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 import android.widget.Button;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.LiveData;
@@ -59,6 +63,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    
     // Once the user has been logged in succesfully
     private void onLoggedIn() {
         View loginButton = findViewById(R.id.loginButton);
@@ -136,45 +141,8 @@ public class MainActivity extends AppCompatActivity {
 
     // Display a menu when user chooses to log out (eventually will be used)
     // TODO: Use this at some point (preferably for the landing page)
-    private void showLogoutDialog() {
-        AlertDialog.Builder alertBuilder = new AlertDialog.Builder(MainActivity.this);
-        final AlertDialog alertDialog = alertBuilder.create();
 
-        alertBuilder.setMessage("Logout?");
 
-        alertBuilder.setPositiveButton("Logout", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                logout();
-            }
-        });
-        alertBuilder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                alertDialog.dismiss();
-            }
-        });
-
-        alertBuilder.create().show();
-    }
-
-    private void logout() {
-        loggedInUserId = LOGGED_OUT;
-        updateSharedReference();
-
-        getIntent().putExtra(MAIN_ACTIVITY_USER_ID, LOGGED_OUT);
-
-        startActivity(LogInActivity.loginIntentFactory(getApplicationContext()));
-
-    }
-
-    private void updateSharedReference() {
-        SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences(getString(R.string.preference_file_key),
-                Context.MODE_PRIVATE);
-        SharedPreferences.Editor sharedPrefEditor = sharedPreferences.edit();
-        sharedPrefEditor.putInt(getString(R.string.preference_userId_key), loggedInUserId);
-        sharedPrefEditor.apply();
-    }
 
 
     // The bottom two methods might be used later on
