@@ -63,32 +63,6 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.logout_menu,menu);
-        return true;
-    }
-
-    @Override
-    public boolean onPrepareOptionsMenu(Menu menu) {
-        MenuItem item = menu.findItem(R.id.logoutMenuItem);
-        item.setVisible(true);
-        if(user == null){
-            return false;
-        }
-        item.setTitle(user.getUsername());
-        item.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
-            @Override
-            public boolean onMenuItemClick(@NonNull MenuItem menuItem) {
-
-                showLogoutDialog();
-                return false;
-            }
-        });
-        return super.onPrepareOptionsMenu(menu);
-
-    }
     
     // Once the user has been logged in succesfully
     private void onLoggedIn() {
@@ -167,45 +141,8 @@ public class MainActivity extends AppCompatActivity {
 
     // Display a menu when user chooses to log out (eventually will be used)
     // TODO: Use this at some point (preferably for the landing page)
-    private void showLogoutDialog() {
-        AlertDialog.Builder alertBuilder = new AlertDialog.Builder(MainActivity.this);
-        final AlertDialog alertDialog = alertBuilder.create();
 
-        alertBuilder.setMessage("Logout?");
 
-        alertBuilder.setPositiveButton("Logout", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                logout();
-            }
-        });
-        alertBuilder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                alertDialog.dismiss();
-            }
-        });
-
-        alertBuilder.create().show();
-    }
-
-    private void logout() {
-        loggedInUserId = LOGGED_OUT;
-        updateSharedReference();
-
-        getIntent().putExtra(MAIN_ACTIVITY_USER_ID, LOGGED_OUT);
-
-        startActivity(LogInActivity.loginIntentFactory(getApplicationContext()));
-
-    }
-
-    private void updateSharedReference() {
-        SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences(getString(R.string.preference_file_key),
-                Context.MODE_PRIVATE);
-        SharedPreferences.Editor sharedPrefEditor = sharedPreferences.edit();
-        sharedPrefEditor.putInt(getString(R.string.preference_userId_key), loggedInUserId);
-        sharedPrefEditor.apply();
-    }
 
 
     // The bottom two methods might be used later on
