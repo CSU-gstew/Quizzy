@@ -69,6 +69,8 @@ public class MainActivity extends AppCompatActivity {
         View loginButton = findViewById(R.id.loginButton);
         if (loginButton != null) loginButton.setVisibility(View.GONE);
 
+        // TODO: Figure out if we should keep this line or not
+        // It just displays the id of the user logged in, which doesn't really occur in actual android apps
         Toast.makeText(this, "Logged in (userId=" + loggedInUserId + ")", Toast.LENGTH_SHORT).show();
 
         Intent intent = LandingPage.landingPageIntentFactory(MainActivity.this, loggedInUserId);

@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
@@ -15,7 +16,7 @@ import com.example.project_02.database.entities.User;
 import com.example.project_02.databinding.ActivityCreateAccountBinding;
 import com.example.project_02.databinding.ActivityLogInBinding;
 
-public class CreateAccountActivity extends Activity {
+public class CreateAccountActivity extends AppCompatActivity {
     private ActivityCreateAccountBinding binding;
     private QuizzyLogRepository repository;
 
@@ -50,14 +51,14 @@ public class CreateAccountActivity extends Activity {
         // Check if the typed username doesn't exist in the database
         // Essentially checking if the user exists beforehand or not
         LiveData<User> userLiveData = repository.getUserByUsername(username);
-        userLiveData.observe((LifecycleOwner) this, user -> {
-            userLiveData.removeObservers((LifecycleOwner) this);
+        userLiveData.observe(this, user -> {
+            userLiveData.removeObservers(this);
 
             // Check if user exists beforehand
             if(user != null){
                 toastMaker(getString(R.string.error_create_account_existing_username));
             } else {
-                // Succesfully create the account and insert into the database
+                // Successfully create the account and insert into the database
                 User newUser = new User(username, password);
                 repository.insertUser(newUser);
 
