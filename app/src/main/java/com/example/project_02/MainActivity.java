@@ -85,6 +85,15 @@ public class MainActivity extends AppCompatActivity {
                     startActivity(LogInActivity.loginIntentFactory(MainActivity.this))
             );
         }
+
+        // Necessary code for "Create Account" functionality
+        Button createAccBtn = findViewById(R.id.createAccountButton);
+        if (createAccBtn != null){
+            createAccBtn.setVisibility(View.VISIBLE);
+            createAccBtn.setOnClickListener(v ->
+                    startActivity(CreateAccountActivity.createAccountIntentFactory(MainActivity.this))
+            );
+        }
     }
 
     private int getSavedUserId() {
