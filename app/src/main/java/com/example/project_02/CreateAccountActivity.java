@@ -76,6 +76,6 @@ public class CreateAccountActivity extends Activity {
     }
 
     static Intent createAccountIntentFactory(Context context) {
-        return new Intent(context, LogInActivity.class);
+        return new Intent(context, CreateAccountActivity.class);
     }
 }
