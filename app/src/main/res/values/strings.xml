@@ -17,6 +17,10 @@
     <string name="error_invalid_password">Invalid password.</string>
     <string name="error_invalid_username">%1$s is not a valid username.</string>
     <string name="admin_access">Admin Access</string>
+    <string name="create_an_account">Create an Account</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="repeat_password">Repeat Password</string>
+    <string name="retype_password">Retype Password</string>
 
 
 </resources>
