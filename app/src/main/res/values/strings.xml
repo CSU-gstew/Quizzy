@@ -17,6 +17,7 @@
     <string name="error_create_account_empty_fields">Please enter username and fill out both password fields.</string>
     <string name="error_create_account_password_mismatch">Passwords do not match.</string>
     <string name="error_create_account_existing_username">An account with that username already exists.</string>
+    <string name="error_create_account_username_invalid_characters">Username contains invalid characters.</string>
     <string name="create_account_successful">Account created successfully!</string>
     <string name="error_invalid_password">Invalid password.</string>
     <string name="error_invalid_username">%1$s is not a valid username.</string>
