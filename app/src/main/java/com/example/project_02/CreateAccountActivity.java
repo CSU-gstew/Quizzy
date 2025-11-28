@@ -72,10 +72,18 @@ public class CreateAccountActivity extends AppCompatActivity {
                 toastMaker(getString(R.string.error_create_account_username_invalid_characters), false);
                 toastMaker("Invalid Characters:\n?!./*&^%$#@()~`-_=+[]{}\\|;:'\",<>", true);
             } else {
+                // Read the Admin switch state
+                boolean isAdmin = binding.adminSwitch.isChecked();
+
                 // Successfully create the account and insert into the database
                 User newUser = new User(username, password);
+                newUser.setAdmin(isAdmin); // Sets the User to Admin if true
                 repository.insertUser(newUser);
 
+                // Display the appropriate toast if the User is an Admin upon creation
+                if(isAdmin){
+                    toastMaker(getString(R.string.create_admin_account_successful), false);
+                }
                 toastMaker(getString(R.string.create_account_successful), false);
 
                 finish(); // Should send user back to the Main Activity where they can sign in
