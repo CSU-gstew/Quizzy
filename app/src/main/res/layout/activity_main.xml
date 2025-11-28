@@ -24,6 +24,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
+        android:layout_marginTop="32dp"
         android:paddingHorizontal="16dp"
         android:text="@string/welcome_to_quizzy_please_sign_in"
         android:textSize="42sp"
