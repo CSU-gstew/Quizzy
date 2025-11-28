@@ -19,6 +19,7 @@
     <string name="error_create_account_existing_username">An account with that username already exists.</string>
     <string name="error_create_account_username_invalid_characters">Username contains invalid characters.</string>
     <string name="create_account_successful">Account created successfully!</string>
+    <string name="create_admin_account_successful">Admin account created successfully!</string>
     <string name="error_invalid_password">Invalid password.</string>
     <string name="error_invalid_username">%1$s is not a valid username.</string>
     <string name="admin_access">Admin Access</string>
@@ -26,6 +27,7 @@
     <string name="sign_up">Sign Up</string>
     <string name="repeat_password">Repeat Password</string>
     <string name="retype_password">Retype Password</string>
+    <string name="enable_admin_account">Enable Admin Account?</string>
 
 
 </resources>

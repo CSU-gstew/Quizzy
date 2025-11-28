@@ -60,9 +60,43 @@
         android:hint="@string/retype_password"
         android:inputType="textPassword"
         android:textSize="24sp"
+        android:layout_marginBottom="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/userNameCreateAccountEditText" />
+
+
+    <!-- Had to put the text and switch for admin account in their own Linear Layout -->
+    <!-- Was the only way to get it so the text and switch remain on the same level -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp">
+
+        <TextView
+            android:id="@+id/adminLabel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/enable_admin_account"
+            android:textSize="24dp" />
+
+        <com.google.android.material.switchmaterial.SwitchMaterial
+            android:id="@+id/adminSwitch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="false"
+            android:layoutDirection="rtl"
+            android:scaleX="1.3"
+            android:scaleY="1.3"
+            android:thumbTint="@color/dark_blue"
+            android:trackTint="@color/gray" />
+    </LinearLayout>
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/signUpButton"
@@ -76,6 +110,6 @@
         android:backgroundTint="@color/dark_blue"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/passwordCreateAccountEditText" />
+        app:layout_constraintTop_toBottomOf="@+id/passwordCreateAccountEditTextCopy" />
 
 </LinearLayout>
