@@ -28,6 +28,9 @@
     <string name="repeat_password">Repeat Password</string>
     <string name="retype_password">Retype Password</string>
     <string name="enable_admin_account">Enable Admin Account?</string>
+    <string name="questions_failed">Questions Failed:</string>
+    <string name="questions_passed">Questions Passed:</string>
+    <string name="quiz_name">Quiz Name:</string>
 
 
 </resources>
