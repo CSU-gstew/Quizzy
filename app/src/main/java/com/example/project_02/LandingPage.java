@@ -8,6 +8,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
@@ -39,6 +40,12 @@ public class LandingPage extends AppCompatActivity {
         setSupportActionBar(toolbar);
         repository = QuizzyLogRepository.getRepository(getApplication());
 
+        // Code for wiring up View Scores button
+        Button viewScoresButton = findViewById(R.id.viewScoresButton);
+        viewScoresButton.setOnClickListener(v -> {
+            Intent intent = new Intent(LandingPage.this, QuizInfoActivity.class);
+            startActivity(intent);
+        });
 
         adminButton = findViewById(R.id.adminButton);
 

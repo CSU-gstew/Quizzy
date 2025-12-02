@@ -31,6 +31,7 @@
     <string name="questions_failed">Questions Failed:</string>
     <string name="questions_passed">Questions Passed:</string>
     <string name="quiz_name">Quiz Name:</string>
+    <string name="quiz_scores">Quiz Scores</string>
 
 
 </resources>
