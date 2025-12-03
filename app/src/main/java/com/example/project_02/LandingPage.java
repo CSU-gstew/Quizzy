@@ -99,7 +99,6 @@ public class LandingPage extends AppCompatActivity {
     }
     private void setupButtons() {
         adminButton.setOnClickListener(v -> {
-
             Intent intent = new Intent(this, AdminActivity.class);
             startActivity(intent);
         });
