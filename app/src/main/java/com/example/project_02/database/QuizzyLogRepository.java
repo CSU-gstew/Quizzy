@@ -6,6 +6,8 @@ import android.util.Log;
 import androidx.lifecycle.LiveData;
 
 import com.example.project_02.MainActivity;
+import com.example.project_02.database.entities.Question;
+import com.example.project_02.database.entities.Quiz;
 import com.example.project_02.database.entities.QuizzyLog;
 import com.example.project_02.database.entities.User;
 
@@ -14,14 +16,19 @@ import java.util.List;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
+import java.util.function.Consumer;
 
 public class QuizzyLogRepository {
     private final QuizzyLogDAO quizzyLogDAO;
     private final UserDAO userDAO;
 
+    private QuizDAO quizDAO;
+    private QuestionDAO questionDAO;
+
     private ArrayList<QuizzyLog> allLogs;
 
     private static QuizzyLogRepository repository;
+
 
     private QuizzyLogRepository(Application application) {
         QuizzyLogDatabase db = QuizzyLogDatabase.getDatabase(application);
@@ -115,5 +122,18 @@ public class QuizzyLogRepository {
         return null;
 
 
+    }
+
+    public void insertQuiz(Quiz quiz, Consumer<Long> callback) {
+        QuizzyLogDatabase.databasedWriteExecutor.execute(() -> {
+            long id = quizDAO.insertQuiz(quiz);
+            callback.accept(id);
+        });
+    }
+
+    public void insertQuestion(Question q) {
+        QuizzyLogDatabase.databasedWriteExecutor.execute(() -> {
+            questionDAO.insertQuestion(q);
+        });
     }
 }
