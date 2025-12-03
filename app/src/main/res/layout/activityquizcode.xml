@@ -1,27 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <View
+        android:id="@+id/statusBarSpacer"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/dark_blue"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        />
+
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/action_bar"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@color/dark_blue"
+        app:layout_constraintBottom_toTopOf="@+id/titleLoginTextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.513"
+        app:menu="@menu/logout_menu"
+        app:theme="@style/ToolbarTheme"
+        app:title="Quizzy"
+        app:titleTextColor="@color/white" />
 
     <TextView
         android:id="@+id/titleLoginTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="72dp"
         android:gravity="center"
-        android:layout_marginTop="32dp"
         android:paddingHorizontal="16dp"
         android:text="Code needed to access test"
         android:textSize="42sp"
         android:textStyle="bold"
         app:layout_constraintTop_toTopOf="parent"
-        />
+        tools:layout_editor_absoluteX="0dp" />
+
     <EditText
-        android:id="@+id/CodeforTestEditTText"
+        android:id="@+id/AccessCodeEditText"
         android:layout_width="match_parent"
         android:layout_height="85dp"
         android:layout_margin="16dp"
-        android:autofillHints="Please enter username"
+        android:autofillHints="Please enter the code"
         android:gravity="center"
         android:hint="Code"
         android:inputType="text"
@@ -29,5 +57,21 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/titleLoginTextView" />
+
+    <Button
+        android:id="@+id/loginButton"
+        android:layout_width="match_parent"
+        android:layout_height="105dip"
+        android:layout_margin="16dip"
+        android:layout_marginTop="108dp"
+        android:backgroundTint="@color/dark_blue"
+        android:text="Enter"
+        android:textSize="32sp"
+        app:cornerRadius="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/AccessCodeEditText" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
