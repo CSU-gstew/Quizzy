@@ -1,6 +1,7 @@
 package com.example.project_02.database.entities;
 
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 import com.example.project_02.database.QuizzyLogDatabase;
@@ -22,14 +23,27 @@ public class User {
 
 
     public User(String username, String password, boolean isAdmin, int quizzes_taken, int questions_passed, int questions_failed) {
-        this.username = username;
-        this.password = password;
-        isAdmin = false;
+        this.username        = username;
+        this.password        = password;
+        this.isAdmin         = isAdmin;
 
-        this.quizzes_taken = quizzes_taken;
+        this.quizzes_taken   = quizzes_taken;
         this.questions_passed = questions_passed;
         this.questions_failed = questions_failed;
     }
+
+    // These two constructors are used for creating a new user with just the username and password
+    // No need to pass in values such as isAdmin, quizzes_taken, questions_passed, or questions_failed
+    // Both are tagged with @Ignore so that the compiler knows to choose the previous constructor
+    @Ignore
+    public User(String username, String password) {
+        this(username, password, false, 0, 0, 0);
+    }
+    @Ignore
+    public User(String username, String password, boolean isAdmin) {
+        this(username, password, isAdmin, 0, 0, 0);
+    }
+
 
     @Override
     public boolean equals(Object o) {

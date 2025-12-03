@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -75,6 +76,14 @@ public class LandingPage extends AppCompatActivity {
                 .observe(this, loadedUser -> {
                     user = loadedUser;
                     if (user != null) {
+
+                        // 🔹 Add this block:
+                        // TODO: REMOVE LATER
+                        Log.d("LandingPage",
+                                "Loaded user id=" + user.getId()
+                                        + ", username=" + user.getUsername()
+                                        + ", isAdmin=" + user.isAdmin());
+
                         setupUIForUser(user);
                         invalidateOptionsMenu();
                     }

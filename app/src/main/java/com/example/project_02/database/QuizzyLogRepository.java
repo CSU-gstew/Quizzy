@@ -34,7 +34,7 @@ public class QuizzyLogRepository {
         if (repository != null) {
             return repository;
         }
-        Future<QuizzyLogRepository> future = QuizzyLogDatabase.databasedWriteExecutor.submit(
+        Future<QuizzyLogRepository> future = QuizzyLogDatabase.databaseWriteExecutor.submit(
                 new Callable<QuizzyLogRepository>() {
                     @Override
                     public QuizzyLogRepository call() throws Exception {
@@ -52,7 +52,7 @@ public class QuizzyLogRepository {
 
 
     public ArrayList<QuizzyLog> getAllLogs() {
-        Future<ArrayList<QuizzyLog>> future = QuizzyLogDatabase.databasedWriteExecutor.submit(
+        Future<ArrayList<QuizzyLog>> future = QuizzyLogDatabase.databaseWriteExecutor.submit(
                 new Callable<ArrayList<QuizzyLog>>() {
                     @Override
                     public ArrayList<QuizzyLog> call() throws Exception {
@@ -71,13 +71,13 @@ public class QuizzyLogRepository {
     }
 
     public void insertQuizzyLog(QuizzyLog quizzyLog) {
-        QuizzyLogDatabase.databasedWriteExecutor.execute(() -> {
+        QuizzyLogDatabase.databaseWriteExecutor.execute(() -> {
             quizzyLogDAO.insert(quizzyLog);
         });
     }
 
-    public void insertUser(User... user) {
-        QuizzyLogDatabase.databasedWriteExecutor.execute(() -> {
+    public void insertUser(User user) {
+        QuizzyLogDatabase.databaseWriteExecutor.execute(() -> {
             userDAO.insert(user);
         });
     }
@@ -97,7 +97,7 @@ public class QuizzyLogRepository {
 
     @Deprecated
     public ArrayList<QuizzyLog> getAllLogsByUserId(int loggedInUserId) {
-        Future<ArrayList<QuizzyLog>> future = QuizzyLogDatabase.databasedWriteExecutor.submit(
+        Future<ArrayList<QuizzyLog>> future = QuizzyLogDatabase.databaseWriteExecutor.submit(
                 new Callable<ArrayList<QuizzyLog>>() {
                     @Override
                     public ArrayList<QuizzyLog> call() throws Exception {

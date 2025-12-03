@@ -3,6 +3,7 @@ package com.example.project_02;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -75,9 +76,14 @@ public class CreateAccountActivity extends AppCompatActivity {
                 // Read the Admin switch state
                 boolean isAdmin = binding.adminSwitch.isChecked();
 
+
+                // TODO:REMOVE LATER
+                Log.d("CreateAccountActivity",
+                        "Creating user " + username + ", isAdmin=" + isAdmin);
+
                 // Successfully create the account and insert into the database
-                User newUser = new User(username, password);
-                newUser.setAdmin(isAdmin); // Sets the User to Admin if true
+                User newUser = new User(username, password, isAdmin);
+                //newUser.setAdmin(isAdmin); // Sets the User to Admin if true
                 repository.insertUser(newUser);
 
                 // Display the appropriate toast if the User is an Admin upon creation

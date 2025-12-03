@@ -30,7 +30,7 @@ public abstract class QuizzyLogDatabase extends RoomDatabase {
     private static volatile QuizzyLogDatabase INSTANCE;
     private static final int NUMBER_OF_THREADS = 4;
 
-    static final ExecutorService databasedWriteExecutor = Executors.newFixedThreadPool(NUMBER_OF_THREADS);
+    static final ExecutorService databaseWriteExecutor = Executors.newFixedThreadPool(NUMBER_OF_THREADS);
 
     static QuizzyLogDatabase getDatabase(final Context context){
         if(INSTANCE == null){
@@ -56,13 +56,12 @@ public abstract class QuizzyLogDatabase extends RoomDatabase {
         public void onCreate(@NonNull SupportSQLiteDatabase db){
             super.onCreate(db);
             Log.i(MainActivity.TAG, "DATABASE CREATED!");
-            databasedWriteExecutor.execute(() -> {
+            databaseWriteExecutor.execute(() -> {
                 UserDAO dao = INSTANCE.userDAO();
                 dao.deleteAll();
 
                 // Admin Creation
-                User admin = new User("admin2", "admin2");
-                admin.setAdmin(true);
+                User admin = new User("admin2", "admin2", true);
 
                 // Insert Admin into Database
                 dao.insert(admin);
