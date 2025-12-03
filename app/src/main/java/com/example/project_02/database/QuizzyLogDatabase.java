@@ -11,6 +11,8 @@ import androidx.room.TypeConverters;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
 import com.example.project_02.MainActivity;
+import com.example.project_02.database.entities.Question;
+import com.example.project_02.database.entities.Quiz;
 import com.example.project_02.database.entities.QuizzyLog;
 import com.example.project_02.database.entities.User;
 import com.example.project_02.database.typeConverters.LocalDateTypeConverter;
@@ -19,7 +21,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 @TypeConverters(LocalDateTypeConverter.class)
-@Database(entities = {QuizzyLog.class, User.class}, version = 1, exportSchema = false)
+@Database(entities = {QuizzyLog.class, User.class, Quiz.class, Question.class}, version = 1, exportSchema = false)
 public abstract class QuizzyLogDatabase extends RoomDatabase {
 
     public static final String USER_TABLE = "usertable";
@@ -79,6 +81,8 @@ public abstract class QuizzyLogDatabase extends RoomDatabase {
     public abstract QuizzyLogDAO quizzyLogDAO();
 
     public abstract UserDAO userDAO();
+    public abstract QuizDAO quizDAO();
+    public abstract QuestionDAO questionDAO();
 }
 
 
