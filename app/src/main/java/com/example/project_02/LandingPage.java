@@ -4,10 +4,12 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
@@ -39,6 +41,12 @@ public class LandingPage extends AppCompatActivity {
         setSupportActionBar(toolbar);
         repository = QuizzyLogRepository.getRepository(getApplication());
 
+        // Code for wiring up View Scores button
+        Button viewScoresButton = findViewById(R.id.viewScoresButton);
+        viewScoresButton.setOnClickListener(v -> {
+            Intent intent = new Intent(LandingPage.this, QuizInfoActivity.class);
+            startActivity(intent);
+        });
 
         adminButton = findViewById(R.id.adminButton);
 
@@ -68,6 +76,14 @@ public class LandingPage extends AppCompatActivity {
                 .observe(this, loadedUser -> {
                     user = loadedUser;
                     if (user != null) {
+
+                        // 🔹 Add this block:
+                        // TODO: REMOVE LATER
+                        Log.d("LandingPage",
+                                "Loaded user id=" + user.getId()
+                                        + ", username=" + user.getUsername()
+                                        + ", isAdmin=" + user.isAdmin());
+
                         setupUIForUser(user);
                         invalidateOptionsMenu();
                     }
