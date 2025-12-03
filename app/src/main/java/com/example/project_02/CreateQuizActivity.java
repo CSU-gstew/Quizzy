@@ -7,14 +7,14 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import com.example.project_02.database.QuizzyLogRepository;
 import com.example.project_02.database.entities.Question;
 import com.example.project_02.database.entities.Quiz;
+import com.google.android.material.appbar.MaterialToolbar;
 
-public class CreateQuizActivity extends AppCompatActivity {
+public class CreateQuizActivity extends BaseActivity {
 
+    private MaterialToolbar toolbar;
     private QuizzyLogRepository repository;
     private LinearLayout questionsContainer;
     private EditText quizNameInput;
@@ -24,6 +24,9 @@ public class CreateQuizActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_quiz);
+
+        toolbar = findViewById(R.id.action_bar);
+        setupToolbar(toolbar);
 
         repository = QuizzyLogRepository.getRepository(getApplication());
 
