@@ -125,14 +125,14 @@ public class QuizzyLogRepository {
     }
 
     public void insertQuiz(Quiz quiz, Consumer<Long> callback) {
-        QuizzyLogDatabase.databasedWriteExecutor.execute(() -> {
+        QuizzyLogDatabase.databaseWriteExecutor.execute(() -> {
             long id = quizDAO.insertQuiz(quiz);
             callback.accept(id);
         });
     }
 
     public void insertQuestion(Question q) {
-        QuizzyLogDatabase.databasedWriteExecutor.execute(() -> {
+        QuizzyLogDatabase.databaseWriteExecutor.execute(() -> {
             questionDAO.insertQuestion(q);
         });
     }
