@@ -36,13 +36,11 @@ public class AdminActivity extends BaseActivity {
             }
         });
 
-
-// TODO: Hook up EditQuizActivity when implemented
         btnEditQuiz.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-// Intent intent = new Intent(AdminActivity.this, EditQuizActivity.class);
-// startActivity(intent);
+            Intent intent = new Intent(AdminActivity.this, EditQuizActivity.class);
+            startActivity(intent);
             }
         });
     }
