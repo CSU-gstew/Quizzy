@@ -5,6 +5,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -20,6 +21,8 @@ public class CreateQuizActivity extends AppCompatActivity {
     private EditText quizNameInput;
     private Button addQuestionButton, saveQuizButton;
 
+    private TextView quizCodeDisplay;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,13 +30,16 @@ public class CreateQuizActivity extends AppCompatActivity {
 
         repository = QuizzyLogRepository.getRepository(getApplication());
 
+        quizCodeDisplay = findViewById(R.id.quizCodeDisplay);
         quizNameInput = findViewById(R.id.quizNameInput);
         addQuestionButton = findViewById(R.id.addQuestionButton);
         saveQuizButton = findViewById(R.id.saveQuizButton);
         questionsContainer = findViewById(R.id.questionsContainer);
+        String accessCode = String.valueOf((int)(Math.random() * 90000) + 10000);
+        quizCodeDisplay.setText("Quiz Code: " + accessCode);
 
         addQuestionButton.setOnClickListener(v -> addQuestionView());
-        saveQuizButton.setOnClickListener(v -> saveQuiz());
+        saveQuizButton.setOnClickListener(v -> saveQuiz(accessCode));
     }
 
     private void addQuestionView() {
@@ -42,15 +48,13 @@ public class CreateQuizActivity extends AppCompatActivity {
         questionsContainer.addView(questionView);
     }
 
-    private void saveQuiz() {
+    private void saveQuiz(String accessCode) {
         String quizName = quizNameInput.getText().toString();
 
         if (quizName.isEmpty()) {
             Toast.makeText(this, "Please enter a quiz name", Toast.LENGTH_SHORT).show();
             return;
         }
-
-        String accessCode = String.valueOf((int)(Math.random() * 90000) + 10000);
 
         Quiz quiz = new Quiz(quizName, accessCode);
 
