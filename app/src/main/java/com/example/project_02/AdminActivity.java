@@ -8,11 +8,12 @@ import android.widget.Button;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.project_02.R;
+import com.google.android.material.appbar.MaterialToolbar;
 
 
-public class AdminActivity extends AppCompatActivity {
+public class AdminActivity extends BaseActivity {
 
-
+    private MaterialToolbar toolbar;
     private Button btnCreateQuiz;
     private Button btnEditQuiz;
 
@@ -23,6 +24,9 @@ public class AdminActivity extends AppCompatActivity {
         setContentView(R.layout.activity_admin_page);
         btnCreateQuiz = findViewById(R.id.CreateQuiz);
         btnEditQuiz = findViewById(R.id.EditQuiz);
+
+        toolbar = findViewById(R.id.action_bar);
+        setupToolbar(toolbar);
 
         btnCreateQuiz.setOnClickListener(new View.OnClickListener() {
             @Override
