@@ -34,6 +34,8 @@ public class QuizzyLogRepository {
         QuizzyLogDatabase db = QuizzyLogDatabase.getDatabase(application);
         this.quizzyLogDAO = db.quizzyLogDAO();
         this.userDAO = db.userDAO();
+        this.quizDAO = db.quizDAO();
+        this.questionDAO = db.questionDAO();
         this.allLogs = (ArrayList<QuizzyLog>) this.quizzyLogDAO.getAllRecords();
     }
 
@@ -136,4 +138,25 @@ public class QuizzyLogRepository {
             questionDAO.insertQuestion(q);
         });
     }
+    public void updateQuiz(Quiz quiz) {
+        QuizzyLogDatabase.databaseWriteExecutor.execute(() -> quizDAO.updateQuiz(quiz));
+    }
+    public void deleteQuestionsForQuiz(int quizId) {
+        QuizzyLogDatabase.databaseWriteExecutor.execute(() -> questionDAO.deleteQuestionsForQuiz(quizId));
+    }
+    public LiveData<List<Question>> getQuestionsForQuiz(int quizId) {
+        return questionDAO.getQuestionsForQuiz(quizId);
+    }
+    public void replaceAllQuestionsForQuiz(int quizId, List<Question> newList) {
+        QuizzyLogDatabase.databaseWriteExecutor.execute(() -> {
+            questionDAO.deleteQuestionsForQuiz(quizId);
+            for (Question q : newList) {
+                questionDAO.insertQuestion(q);
+            }
+        });
+    }
+    public LiveData<Quiz> getQuizByAccessCode(String accessCode) {
+        return quizDAO.getQuizByAccessCode(accessCode);
+    }
+
 }

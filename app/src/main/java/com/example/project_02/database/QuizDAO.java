@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.Query;
+import androidx.room.Update;
 
 import com.example.project_02.database.entities.Quiz;
 
@@ -15,6 +16,8 @@ public interface QuizDAO {
     @Insert
     long insertQuiz(Quiz quiz);
 
+    @Update
+    void updateQuiz(Quiz quiz);
     @Query("SELECT * FROM quiz_table WHERE accessCode = :accessCode")
     LiveData<Quiz> getQuizByAccessCode(String accessCode);
 
