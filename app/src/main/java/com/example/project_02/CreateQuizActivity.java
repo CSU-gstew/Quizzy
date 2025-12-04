@@ -48,6 +48,8 @@ public class CreateQuizActivity extends BaseActivity {
     private void addQuestionView() {
         View questionView = getLayoutInflater()
                 .inflate(R.layout.question_item, null);
+        Button deleteBtn = questionView.findViewById(R.id.buttonDeleteQuestion);
+        deleteBtn.setOnClickListener(v -> questionsContainer.removeView(questionView));
         questionsContainer.addView(questionView);
     }
 
@@ -76,6 +78,8 @@ public class CreateQuizActivity extends BaseActivity {
             String c = ((EditText)view.findViewById(R.id.optionC)).getText().toString();
             String d = ((EditText)view.findViewById(R.id.optionD)).getText().toString();
             String correct = ((EditText)view.findViewById(R.id.correctOption)).getText().toString();
+
+            if (q.isEmpty()) continue;
 
             Question question = new Question(quizId, q, a, b, c, d, correct, "MCQ");
             repository.insertQuestion(question);

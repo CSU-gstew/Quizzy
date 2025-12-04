@@ -43,6 +43,7 @@
     <string name="quiz_scores">Quiz Scores</string>
     <string name="quiz_name">Quiz Name:</string>
     <string name="quiz_code">Quiz Code:</string>
+    <string name="delete_question">Delete Question</string>
 
 
 </resources>
