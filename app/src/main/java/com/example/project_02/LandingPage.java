@@ -32,6 +32,14 @@ public class LandingPage extends BaseActivity {
             Intent intent = new Intent(LandingPage.this, QuizInfoActivity.class);
             startActivity(intent);
         });
+
+        // Code to wire QuizCodeActivity to Play Quiz button-Alex
+        Button playQuizzesButton = findViewById(R.id.playQuizzesButton);
+        playQuizzesButton.setOnClickListener(v -> {
+            Intent intent = new Intent(LandingPage.this, QuizCodeActivity.class);
+            startActivity(intent);
+        });
+
         adminButton = findViewById(R.id.adminButton);
         repository.getUserByUserId(loggedInUserId).observe(this, loadedUser -> {
             user = loadedUser;

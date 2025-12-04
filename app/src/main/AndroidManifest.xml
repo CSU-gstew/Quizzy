@@ -28,6 +28,7 @@
         <activity android:name=".AdminActivity" />
         <activity android:name=".CreateQuizActivity" />
         <activity android:name=".EditQuizActivity" />
+        <activity android:name=".QuizCodeActivity" />
 
 
 
