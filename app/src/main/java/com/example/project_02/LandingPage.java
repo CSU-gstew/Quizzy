@@ -26,6 +26,7 @@ public class LandingPage extends BaseActivity {
         setupToolbar(toolbar); // sets up logout menu and user info
 
         // Code for wiring up View Scores button
+        readLoggedInUserFromSharedPreferences();
         Button viewScoresButton = findViewById(R.id.viewScoresButton);
         viewScoresButton.setOnClickListener(v -> {
             Intent intent = new Intent(LandingPage.this, QuizInfoActivity.class);
