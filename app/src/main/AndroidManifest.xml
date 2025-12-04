@@ -10,7 +10,7 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Project_02">
+        android:theme="@style/Base.Theme.Project_02">
         <activity
             android:name=".MainActivity"
 
@@ -22,7 +22,14 @@
             </intent-filter>
         </activity>
         <activity android:name=".LogInActivity" />
-        <activity android:name=".MainMenuActivity" />
+        <activity android:name=".LandingPage" />
+        <activity android:name=".CreateAccountActivity" />
+        <activity android:name=".QuizInfoActivity" />
+        <activity android:name=".AdminActivity" />
+        <activity android:name=".CreateQuizActivity" />
+        <activity android:name=".EditQuizActivity" />
+
+
 
     </application>
 

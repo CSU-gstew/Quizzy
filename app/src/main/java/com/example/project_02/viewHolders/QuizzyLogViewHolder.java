@@ -25,7 +25,7 @@ public class QuizzyLogViewHolder extends RecyclerView.ViewHolder {
 
     static QuizzyLogViewHolder create(ViewGroup parent){
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.quizzylog_recycler_item, parent,false);
+                .inflate(R.layout.recycler_item_quiz_info, parent,false);
         return new QuizzyLogViewHolder(view);
     }
 }

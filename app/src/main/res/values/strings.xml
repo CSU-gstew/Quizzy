@@ -14,8 +14,36 @@
 
     <string name="create_account">Create Account</string>
     <string name="error_empty_fields">Please enter both username and password.</string>
+    <string name="error_create_account_empty_fields">Please enter username and fill out both password fields.</string>
+    <string name="error_create_account_password_mismatch">Passwords do not match.</string>
+    <string name="error_create_account_existing_username">An account with that username already exists.</string>
+    <string name="error_create_account_username_invalid_characters">Username contains invalid characters.</string>
+    <string name="create_account_successful">Account created successfully!</string>
+    <string name="create_admin_account_successful">Admin account created successfully!</string>
     <string name="error_invalid_password">Invalid password.</string>
     <string name="error_invalid_username">%1$s is not a valid username.</string>
+    <string name="admin_access">Admin Access</string>
+    <string name="create_an_account">Create an Account</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="repeat_password">Repeat Password</string>
+    <string name="retype_password">Retype Password</string>
+    <string name="enable_admin_account">Enable Admin Account?</string>
+    <string name="create_quiz">Create Quiz</string>
+    <string name="edit_quiz">Edit Quiz</string>
+    <string name="add_question">Add Question</string>
+    <string name="save_quiz">Save Quiz</string>
+    <string name="correct_option_a_b_c_d">Correct Option (A/B/C/D):</string>
+    <string name="option_d">Option D:</string>
+    <string name="option_c">Option C:</string>
+    <string name="option_b">Option B:</string>
+    <string name="option_a">Option A:</string>
+    <string name="question">Question:</string>
+    <string name="questions_failed">Questions Failed:</string>
+    <string name="questions_passed">Questions Passed:</string>
+    <string name="quiz_scores">Quiz Scores</string>
+    <string name="quiz_name">Quiz Name:</string>
+    <string name="quiz_code">Quiz Code:</string>
+    <string name="delete_question">Delete Question</string>
 
 
 </resources>
