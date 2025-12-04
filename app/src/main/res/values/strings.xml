@@ -30,7 +30,6 @@
     <string name="enable_admin_account">Enable Admin Account?</string>
     <string name="create_quiz">Create Quiz</string>
     <string name="edit_quiz">Edit Quiz</string>
-    <string name="quiz_name">Quiz Name</string>
     <string name="add_question">Add Question</string>
     <string name="save_quiz">Save Quiz</string>
     <string name="correct_option_a_b_c_d">Correct Option (A/B/C/D):</string>
@@ -42,6 +41,8 @@
     <string name="questions_failed">Questions Failed:</string>
     <string name="questions_passed">Questions Passed:</string>
     <string name="quiz_scores">Quiz Scores</string>
+    <string name="quiz_name">Quiz Name:</string>
+    <string name="quiz_code">Quiz Code:</string>
 
 
 </resources>
