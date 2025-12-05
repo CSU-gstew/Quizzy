@@ -38,7 +38,10 @@ public class BaseActivity extends AppCompatActivity {
         if (loggedInUserId == LOGGED_OUT) return;
 
         repository.getUserByUserId(loggedInUserId)
-                .observe(this, loadedUser -> user = loadedUser);
+                .observe(this, loadedUser -> {
+                    user = loadedUser;
+                    invalidateOptionsMenu();
+                });
     }
 
     @Override

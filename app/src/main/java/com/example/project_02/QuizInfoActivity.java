@@ -1,26 +1,40 @@
 package com.example.project_02;
 
 import android.os.Bundle;
+import android.view.Menu;
 import android.widget.TextView;
 
-import androidx.appcompat.app.AppCompatActivity;
+import com.google.android.material.appbar.MaterialToolbar;
+import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.view.MenuItem;
+import com.example.project_02.database.QuizzyLogRepository;
+
+import com.example.project_02.database.entities.User;
 
 import com.example.project_02.viewHolders.QuizInfoAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class QuizInfoActivity extends AppCompatActivity {
+public class QuizInfoActivity extends BaseActivity {
 
     private QuizInfoAdapter adapter;
     private TextView quizCountTextView;
+    private MaterialToolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recycler_view);
+
+        // Toolbar display
+        toolbar = findViewById(R.id.action_bar);
+        setupToolbar(toolbar);
 
         quizCountTextView = findViewById(R.id.quizCountTextView);
         RecyclerView recyclerView = findViewById(R.id.logDisplayRecyclerView);
@@ -49,7 +63,7 @@ public class QuizInfoActivity extends AppCompatActivity {
 
     /**
      * This is preferably the ideal code to use
-     * Once we get quizz functionality up and running
+     * Once we get quiz functionality up and running
      * Leaving it here for later use
      * List<QuizInfo> infos = new ArrayList<>();
      * for (QuizzyLog log : logsForUser) {
