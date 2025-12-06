@@ -32,9 +32,9 @@ public abstract class QuizzyLogDatabase extends RoomDatabase {
     private static volatile QuizzyLogDatabase INSTANCE;
     private static final int NUMBER_OF_THREADS = 4;
 
-    static final ExecutorService databaseWriteExecutor = Executors.newFixedThreadPool(NUMBER_OF_THREADS);
+    public static final ExecutorService databaseWriteExecutor = Executors.newFixedThreadPool(NUMBER_OF_THREADS);
 
-    static QuizzyLogDatabase getDatabase(final Context context){
+    public static QuizzyLogDatabase getDatabase(final Context context){
         if(INSTANCE == null){
             synchronized (QuizzyLogDatabase.class){
                 if(INSTANCE == null){
