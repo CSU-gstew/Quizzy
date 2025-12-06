@@ -1,6 +1,7 @@
 package com.example.project_02;
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
@@ -14,12 +15,17 @@ public class QuizActivity extends AppCompatActivity {
     private Button buttonA, buttonB, buttonC, buttonD;
     private int currentQuestionIndex = 0;
     private List<Question> questionList;
+    private TextView questionTextView;
+
+    private int score = 0;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz);
+
+        questionTextView = findViewById(R.id.questionTextView);
 
         buttonA = findViewById(R.id.QuestionA);
         buttonB = findViewById(R.id.QuestionB);
@@ -68,6 +74,7 @@ public class QuizActivity extends AppCompatActivity {
         }
 
         Question q = questionList.get(currentQuestionIndex);
+        questionTextView.setText(q.getQuestionText());
         buttonA.setText("A: " + q.getOptionA());
         buttonB.setText("B: " + q.getOptionB());
         buttonC.setText("C: " + q.getOptionC());
@@ -81,6 +88,14 @@ public class QuizActivity extends AppCompatActivity {
     }
     private void checkAnswer(String selectedOption){
         if (questionList == null || currentQuestionIndex >= questionList.size()) return;
+        Question currentQuestion = questionList.get(currentQuestionIndex);
+        if (currentQuestion.getCorrectOption().equals(selectedOption)){
+            score++;
+            Toast.makeText(this, "CORRECT!", Toast.LENGTH_SHORT).show();
+        }else{
+            Toast.makeText(this, "Wrong!", Toast.LENGTH_SHORT).show();
+        }
+
         currentQuestionIndex++;
         showCurrentQuestion();
     }
