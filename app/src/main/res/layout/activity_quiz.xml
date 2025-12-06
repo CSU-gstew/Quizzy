@@ -19,7 +19,7 @@
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:background="@color/dark_blue"
-        app:layout_constraintBottom_toTopOf="@id/titleMainMenuTextView"
+        app:layout_constraintBottom_toTopOf="@id/titleQuizTextView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -39,91 +39,87 @@
         android:textColor="@color/black"
         android:gravity="center"
         android:layout_margin="16dp"
-        app:layout_constraintTop_toBottomOf="@id/action_bar"
+        app:layout_constraintTop_toBottomOf="@id/titleQuizTextView"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
-    
+        app:layout_constraintEnd_toEndOf="parent" />
+
     <TextView
         android:id="@+id/titleQuizTextView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="112dp"
         android:gravity="center"
         android:text="Quiz"
         android:textColor="@color/black"
         android:textSize="42sp"
         android:textStyle="bold"
-        app:layout_constraintTop_toBottomOf="@id/action_bar"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <ScrollView
         android:id="@+id/quizScroll"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:padding="16dp"
-        app:layout_constraintTop_toBottomOf="@id/titleQuizTextView"
+        app:layout_constraintTop_toBottomOf="@id/questionTextView"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        app:layout_constraintBottom_toBottomOf="parent">
 
-    <LinearLayout
-        android:id="@+id/quizContainer"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"/>
+        <LinearLayout
+            android:id="@+id/quizContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-    <Button
-        android:id="@+id/QuestionA"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="16dp"
-        android:layout_marginTop="20dp"
-        android:backgroundTint="@color/dark_blue"
-        app:layout_constraintTop_toBottomOf="@id/titleQuizTextView"
-        android:text="A: "
-        android:textColor="@color/white"
-        android:textSize="20sp"
-        app:cornerRadius="16dp"/>
+            <Button
+                android:id="@+id/QuestionA"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="20dp"
+                android:backgroundTint="@color/dark_blue"
+                android:text="A: "
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                app:cornerRadius="16dp" />
 
-    <Button
-        android:id="@+id/QuestionB"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="16dp"
-        android:layout_marginTop="20dp"
-        android:backgroundTint="@color/dark_blue"
-        android:text="B: "
-        android:textColor="@color/white"
-        app:layout_constraintTop_toBottomOf="@id/QuestionA"
-        android:textSize="20sp"
-        app:cornerRadius="16dp"/>
+            <Button
+                android:id="@+id/QuestionB"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="20dp"
+                android:backgroundTint="@color/dark_blue"
+                android:text="B: "
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                app:cornerRadius="16dp" />
 
-    <Button
-        android:id="@+id/QuestionC"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="16dp"
-        android:layout_marginTop="20dp"
-        android:backgroundTint="@color/dark_blue"
-        android:text="C: "
-        android:textColor="@color/white"
-        app:layout_constraintTop_toBottomOf="@id/QuestionB"
-        android:textSize="20sp"
-        app:cornerRadius="16dp"/>
+            <Button
+                android:id="@+id/QuestionC"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="20dp"
+                android:backgroundTint="@color/dark_blue"
+                android:text="C: "
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                app:cornerRadius="16dp" />
 
-    <Button
-        android:id="@+id/QuestionD"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="16dp"
-        android:layout_marginTop="20dp"
-        android:backgroundTint="@color/dark_blue"
-        android:text="D: "
-        android:textColor="@color/white"
-        app:layout_constraintTop_toBottomOf="@id/QuestionC"
-        android:textSize="20sp"
-        app:cornerRadius="16dp"/>
-
-    
+            <Button
+                android:id="@+id/QuestionD"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="20dp"
+                android:backgroundTint="@color/dark_blue"
+                android:text="D: "
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                app:cornerRadius="16dp" />
+        </LinearLayout>
+    </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -68,7 +68,7 @@ public class QuizActivity extends AppCompatActivity {
 
     private void showCurrentQuestion(){
         if (questionList == null || questionList.isEmpty() || currentQuestionIndex >= questionList.size()){
-            Toast.makeText(this, "Quiz Completed", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Quiz Completed!", Toast.LENGTH_SHORT).show();
             finish();
             return;
         }
