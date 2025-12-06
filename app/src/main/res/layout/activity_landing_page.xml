@@ -97,22 +97,4 @@
         app:strokeColor="@color/black"
         app:strokeWidth="2dp" />
 
-    <!--<Button
-        android:id="@+id/signOutButton"
-        android:layout_width="0dp"
-        android:layout_height="64dp"
-        android:layout_marginHorizontal="32dp"
-        android:layout_marginBottom="32dp"
-        android:text="@string/sign_out"
-        android:textSize="20sp"
-        android:backgroundTint="@color/dark_blue"
-        android:textColor="@color/white"
-        app:strokeColor="@color/black"
-        app:strokeWidth="2dp"
-        app:cornerRadius="16dp"
-        android:elevation="8dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent" />-->
-
 </androidx.constraintlayout.widget.ConstraintLayout>

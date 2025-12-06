@@ -1,4 +1,5 @@
 package com.example.project_02;
+
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -84,7 +85,7 @@ public class QuizActivity extends AppCompatActivity {
         if (questionList == null || questionList.isEmpty() || currentQuestionIndex >= questionList.size()){
             // Save the quiz results
             saveQuizResults();
-            Toast.makeText(this, "Quiz Completed!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Quiz Completed!", Toast.LENGTH_LONG).show();
             finish();
             return;
         }

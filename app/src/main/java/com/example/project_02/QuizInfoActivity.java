@@ -1,21 +1,18 @@
 package com.example.project_02;
 
 import android.os.Bundle;
-import android.view.Menu;
 import android.widget.TextView;
 
 import com.example.project_02.database.entities.QuizzyLog;
 import com.google.android.material.appbar.MaterialToolbar;
-import androidx.appcompat.app.AlertDialog;
+
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.view.MenuItem;
-import com.example.project_02.database.QuizzyLogRepository;
 
-import com.example.project_02.database.entities.User;
+import com.example.project_02.database.QuizzyLogRepository;
 
 import com.example.project_02.viewHolders.QuizInfoAdapter;
 

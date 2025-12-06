@@ -9,9 +9,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.project_02.R;
 
-import org.w3c.dom.Text;
-
-// TODO: Consider if the recycler view should be used at some point in this application
 public class QuizzyLogViewHolder extends RecyclerView.ViewHolder {
     private final TextView quizzyLogViewItem;
     private QuizzyLogViewHolder(View quizzyLogView){

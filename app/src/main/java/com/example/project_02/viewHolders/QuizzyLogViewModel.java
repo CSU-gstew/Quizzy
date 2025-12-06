@@ -13,12 +13,9 @@ import java.util.List;
 public class QuizzyLogViewModel extends AndroidViewModel {
     private final QuizzyLogRepository repository;
 
-    //private final LiveData<List<QuizzyLog>> allLogsById;
-
     public QuizzyLogViewModel (Application application){
         super(application);
         repository = QuizzyLogRepository.getRepository(application);
-        //allLogsById = repository.getAllLogsByUserIdLiveData(userId);
     }
 
     public LiveData<List<QuizzyLog>> getAllLogsById(int userId) {

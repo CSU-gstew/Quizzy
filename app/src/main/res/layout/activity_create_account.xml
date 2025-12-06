@@ -8,7 +8,6 @@
     android:layout_height="match_parent"
     tools:context=".CreateAccountActivity">
 
-
     <TextView
         android:id="@+id/createAccountTextView"
         android:layout_width="match_parent"
@@ -20,7 +19,6 @@
         android:text="@string/create_an_account"
         android:textSize="42sp"
         android:textStyle="bold" />
-
 
     <EditText
         android:id="@+id/userNameCreateAccountEditText"
@@ -64,7 +62,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/userNameCreateAccountEditText" />
-
 
     <!-- Had to put the text and switch for admin account in their own Linear Layout -->
     <!-- Was the only way to get it so the text and switch remain on the same level -->
