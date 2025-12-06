@@ -1,19 +1,13 @@
 package com.example.project_02;
 
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 import android.widget.Button;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.LiveData;
 
@@ -27,7 +21,6 @@ public class MainActivity extends AppCompatActivity {
     private static final String MAIN_ACTIVITY_USER_ID = "com.example.project_02.MAIN_ACTIVITY_USER_ID";
     private static final String SAVED_INSTANCE_STATE_USERID_KEY = "loggedInUserId";
 
-
     private static final int LOGGED_OUT = -1;
     private ActivityMainBinding binding;
     private QuizzyLogRepository repository;
@@ -36,13 +29,6 @@ public class MainActivity extends AppCompatActivity {
     private User user;
 
     public static final String TAG = "DAC_QUIZZYLOG";
-
-    /**
-     * This is where any variables for the application will be located
-     * But for now, we're just focusing on the user/admin logging in/out
-     * TODO: Implement any needed variables
-     */
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,14 +49,12 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    
+
     // Once the user has been logged in succesfully
     private void onLoggedIn() {
         View loginButton = findViewById(R.id.loginButton);
         if (loginButton != null) loginButton.setVisibility(View.GONE);
 
-        // TODO: Figure out if we should keep this line or not
-        // It just displays the id of the user logged in, which doesn't really occur in actual android apps
         Toast.makeText(this, "Logged in (userId=" + loggedInUserId + ")", Toast.LENGTH_SHORT).show();
 
         Intent intent = LandingPage.landingPageIntentFactory(MainActivity.this, loggedInUserId);
@@ -90,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
 
         // Necessary code for "Create Account" functionality
         Button createAccBtn = findViewById(R.id.createAccountButton);
-        if (createAccBtn != null){
+        if (createAccBtn != null) {
             createAccBtn.setVisibility(View.VISIBLE);
             createAccBtn.setOnClickListener(v ->
                     startActivity(CreateAccountActivity.createAccountIntentFactory(MainActivity.this))
@@ -125,13 +109,13 @@ public class MainActivity extends AppCompatActivity {
         loggedInUserId = sharedPreferences.getInt(getString(R.string.preference_userId_key), LOGGED_OUT);
 
         // check intent for logged in user
-        if(loggedInUserId == LOGGED_OUT & savedInstanceState != null && savedInstanceState.containsKey(SAVED_INSTANCE_STATE_USERID_KEY)){
+        if (loggedInUserId == LOGGED_OUT & savedInstanceState != null && savedInstanceState.containsKey(SAVED_INSTANCE_STATE_USERID_KEY)) {
             loggedInUserId = savedInstanceState.getInt(SAVED_INSTANCE_STATE_USERID_KEY, LOGGED_OUT);
         }
-        if(loggedInUserId == LOGGED_OUT){
+        if (loggedInUserId == LOGGED_OUT) {
             loggedInUserId = getIntent().getIntExtra(MAIN_ACTIVITY_USER_ID, LOGGED_OUT);
         }
-        if(loggedInUserId == LOGGED_OUT){
+        if (loggedInUserId == LOGGED_OUT) {
             return;
         }
 
@@ -144,54 +128,9 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         outState.putInt(SAVED_INSTANCE_STATE_USERID_KEY, loggedInUserId);
         super.onSaveInstanceState(outState);
-    }
-
-
-    // Display a menu when user chooses to log out (eventually will be used)
-    // TODO: Use this at some point (preferably for the landing page)
-
-
-
-
-    // The bottom two methods might be used later on
-    // Still need to decide if they could be useful at some point
-
-    // TODO: Make this insert user/quiz information later on
-    private void insertQuizzyLogRecord(){
-        /**
-         // The following code comes from gymlog
-         // For now, this method shall remain incomplete
-         if(mExercise.isEmpty()){
-         return;
-         }
-
-         GymLog log = new GymLog(mExercise, mWeight, mReps, loggedInUserId);
-         repository.insertGymLog(log);
-         **/
-    }
-
-    // TODO: Make this retrieve user/quiz information later on
-    private void getInformationFromDisplay(){
-        /**
-         // The following code comes from gymlog
-         // For now, this method shall remain incomplete
-        mExercise = binding.exerciseInputEditText.getText().toString();
-        try{
-            mWeight = Double.parseDouble(binding.weightInputEditText.getText().toString());
-        } catch(NumberFormatException e){
-            Log.d(TAG, "Error reading value from Weight edit text.");
-        }
-
-        try{
-            mReps = Integer.parseInt(binding.repInputEditText.getText().toString());
-        } catch(NumberFormatException e){
-            Log.d(TAG, "Error reading value from Reps edit text.");
-        }
-        **/
     }
 }

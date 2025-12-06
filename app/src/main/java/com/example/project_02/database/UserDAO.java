@@ -7,7 +7,6 @@ import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 
-import com.example.project_02.database.entities.QuizzyLog;
 import com.example.project_02.database.entities.User;
 
 import java.util.List;

@@ -15,49 +15,49 @@ public class QuizzyLog {
     @PrimaryKey(autoGenerate = true)
     private int id;
 
-    /**
-    private String exercise;
-    private double weight;
-    private int reps;
-    **/
-
     private LocalDateTime date;
     private int userId;
 
+    // Quiz Info
+    private String quizName;
+    private int questionsPassed;
+    private int questionsFailed;
 
     public QuizzyLog(){}
+
     @Ignore
-    public QuizzyLog(String exercise, double weight, int reps, int userId) {
-        //this.exercise = exercise;
-        //this.weight = weight;
-        //this.reps = reps;
+    public QuizzyLog(int userId, String quizName, int questionsPassed, int questionsFailed) {
         this.userId = userId;
-        date = LocalDateTime.now();
+        this.quizName = quizName;
+        this.questionsPassed = questionsPassed;
+        this.questionsFailed = questionsFailed;
+        this.date = LocalDateTime.now();
     }
 
+    // I don't even know why or where this is used
+    // But apparently it is needed for the database
     @Override
     public String toString() {
-        /**
-        return exercise + "\n" + "weight: " + weight + "\n" +
-                "reps: " + reps + "\n" +
-                "date: " + date.toString() + "\n" +
-                "=-=-=-=-=-=-=-\n";
-        **/
-        return "date: " + date.toString();
+        return "QuizzyLog{" +
+                "id=" + id +
+                ", date=" + date +
+                ", userId=" + userId +
+                ", quizName='" + quizName + '\'' +
+                ", questionsPassed=" + questionsPassed +
+                ", questionsFailed=" + questionsFailed +
+                '}';
     }
 
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         QuizzyLog quizzyLog = (QuizzyLog) o;
-        //return id == gymLog.id && Double.compare(weight, gymLog.weight) == 0 && reps == gymLog.reps && userId == gymLog.userId && Objects.equals(exercise, gymLog.exercise) && Objects.equals(date, gymLog.date);
-        return id == quizzyLog.id && userId == quizzyLog.userId && Objects.equals(date, quizzyLog.date);
+        return id == quizzyLog.id && userId == quizzyLog.userId && questionsPassed == quizzyLog.questionsPassed && questionsFailed == quizzyLog.questionsFailed && Objects.equals(date, quizzyLog.date) && Objects.equals(quizName, quizzyLog.quizName);
     }
 
     @Override
     public int hashCode() {
-        //return Objects.hash(id, exercise, weight, reps, date, userId);
-        return Objects.hash(id, date, userId);
+        return Objects.hash(id, date, userId, quizName, questionsPassed, questionsFailed);
     }
 
     public int getId() {
@@ -67,33 +67,6 @@ public class QuizzyLog {
     public void setId(int id) {
         this.id = id;
     }
-
-
-    /**
-    public String getExercise() {
-        return exercise;
-    }
-
-    public void setExercise(String exercise) {
-        this.exercise = exercise;
-    }
-
-    public double getWeight() {
-        return weight;
-    }
-
-    public void setWeight(double weight) {
-        this.weight = weight;
-    }
-
-    public int getReps() {
-        return reps;
-    }
-
-    public void setReps(int reps) {
-        this.reps = reps;
-    }
-    **/
 
     public LocalDateTime getDate() {
         return date;
@@ -109,5 +82,29 @@ public class QuizzyLog {
 
     public void setUserId(int userId) {
         this.userId = userId;
+    }
+
+    public String getQuizName() {
+        return quizName;
+    }
+
+    public void setQuizName(String quizName) {
+        this.quizName = quizName;
+    }
+
+    public int getQuestionsPassed() {
+        return questionsPassed;
+    }
+
+    public void setQuestionsPassed(int questionsPassed) {
+        this.questionsPassed = questionsPassed;
+    }
+
+    public int getQuestionsFailed() {
+        return questionsFailed;
+    }
+
+    public void setQuestionsFailed(int questionsFailed) {
+        this.questionsFailed = questionsFailed;
     }
 }

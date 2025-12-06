@@ -1,20 +1,18 @@
 package com.example.project_02;
 
 import android.os.Bundle;
-import android.view.Menu;
 import android.widget.TextView;
 
+import com.example.project_02.database.entities.QuizzyLog;
 import com.google.android.material.appbar.MaterialToolbar;
-import androidx.appcompat.app.AlertDialog;
+
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.view.MenuItem;
-import com.example.project_02.database.QuizzyLogRepository;
 
-import com.example.project_02.database.entities.User;
+import com.example.project_02.database.QuizzyLogRepository;
 
 import com.example.project_02.viewHolders.QuizInfoAdapter;
 
@@ -26,6 +24,8 @@ public class QuizInfoActivity extends BaseActivity {
     private QuizInfoAdapter adapter;
     private TextView quizCountTextView;
     private MaterialToolbar toolbar;
+    private QuizzyLogRepository repository;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,42 +43,34 @@ public class QuizInfoActivity extends BaseActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
 
-        // This just placeholder data
-        // TODO: Replace with real code that puts info from quiz into recycler
-        List<QuizInfo> demoData = createDemoData();
+        repository = QuizzyLogRepository.getRepository(getApplication());
 
-        adapter.setItems(demoData);
-        quizCountTextView.setText("Number of Quizzes Taken: " + demoData.size());
+        SharedPreferences prefs = getSharedPreferences(
+                getString(R.string.preference_file_key), Context.MODE_PRIVATE);
+        int userId = prefs.getInt(getString(R.string.preference_userId_key), -1);
+
+        if (userId == -1) {
+            quizCountTextView.setText("Number of Quizzes Taken: 0");
+            return;
+        }
+
+        // LiveData to update the list of quizzes whenever one is completed
+        repository.getAllLogsByUserIdLiveData(userId)
+                .observe(this, logs -> {
+                    if (logs == null) return;
+
+                    List<QuizInfo> infos = new ArrayList<>();
+                    for (QuizzyLog log : logs) {
+                        infos.add(new QuizInfo(
+                                log.getQuizName(),
+                                log.getQuestionsPassed(),
+                                log.getQuestionsFailed()
+                        ));
+                    }
+
+                    adapter.setItems(infos);
+                    quizCountTextView.setText("Number of Quizzes Taken: " + infos.size());
+                });
+
     }
-
-    // This just placeholder data
-    // TODO: Replace with real data coming from the quizzes
-    private List<QuizInfo> createDemoData() {
-        List<QuizInfo> list = new ArrayList<>();
-        list.add(new QuizInfo("Quiz 1", 4, 1));
-        list.add(new QuizInfo("Quiz 2", 5, 0));
-        list.add(new QuizInfo("Quiz 3", 6, 4));
-        return list;
-    }
-
-    /**
-     * This is preferably the ideal code to use
-     * Once we get quiz functionality up and running
-     * Leaving it here for later use
-     * List<QuizInfo> infos = new ArrayList<>();
-     * for (QuizzyLog log : logsForUser) {
-     *     infos.add(new QuizInfo(
-     *         log.getQuizName(),
-     *         log.getQuestionsPassed(),
-     *         log.getQuestionsFailed()
-     *     ));
-     * }
-     * adapter.setItems(infos);
-     * quizCountTextView.setText("Number of Quizzes Taken: " + infos.size());
-     *
-     * Gonna need this line too to overwrite the text view
-     * Should update with the size of how many quizzes a user will have taken
-     * quizCountTextView.setText("Number of Quizzes Taken: " + quizList.size());
-     *
-     */
 }

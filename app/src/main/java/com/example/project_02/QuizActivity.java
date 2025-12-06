@@ -1,4 +1,7 @@
 package com.example.project_02;
+
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.TextView;
@@ -7,8 +10,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 
 import com.example.project_02.database.QuizzyLogDatabase;
+import com.example.project_02.database.QuizzyLogRepository;
 import com.example.project_02.database.entities.Question;
 import com.example.project_02.database.entities.Quiz;
+import com.example.project_02.database.entities.QuizzyLog;
 
 import java.util.List;
 public class QuizActivity extends AppCompatActivity {
@@ -17,13 +22,19 @@ public class QuizActivity extends AppCompatActivity {
     private List<Question> questionList;
     private TextView questionTextView;
 
-    private int score = 0;
+    // For saving quiz info
+    private Quiz currentQuiz;
+    private QuizzyLogRepository repository;
 
+    private int score = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz);
+
+        // Initialize the repository
+        repository = QuizzyLogRepository.getRepository(getApplication());
 
         questionTextView = findViewById(R.id.questionTextView);
 
@@ -52,6 +63,10 @@ public class QuizActivity extends AppCompatActivity {
                             finish();
                             return;
                         }
+
+                        // Store the current quiz
+                        currentQuiz = quiz;
+
                         QuizzyLogDatabase.getDatabase(getApplicationContext())
                                 .questionDAO()
                                 .getQuestionsForQuiz(quiz.getId())
@@ -68,7 +83,9 @@ public class QuizActivity extends AppCompatActivity {
 
     private void showCurrentQuestion(){
         if (questionList == null || questionList.isEmpty() || currentQuestionIndex >= questionList.size()){
-            Toast.makeText(this, "Quiz Completed", Toast.LENGTH_SHORT).show();
+            // Save the quiz results
+            saveQuizResults();
+            Toast.makeText(this, "Quiz Completed!", Toast.LENGTH_LONG).show();
             finish();
             return;
         }
@@ -80,6 +97,28 @@ public class QuizActivity extends AppCompatActivity {
         buttonC.setText("C: " + q.getOptionC());
         buttonD.setText("D: " + q.getOptionD());
     }
+
+    private void saveQuizResults() {
+        if (currentQuiz == null || questionList == null) return;
+
+        int totalQuestions = questionList.size();
+        int questionsPassed = score;
+        int questionsFailed = totalQuestions - score;
+
+        // get logged-in user id from the same prefs used elsewhere
+        SharedPreferences prefs = getSharedPreferences(
+                getString(R.string.preference_file_key), Context.MODE_PRIVATE);
+        int userId = prefs.getInt(getString(R.string.preference_userId_key), -1);
+        if (userId == -1) return;   // skip logging if no logged in user
+
+        // Create a QuizzyLog. Adjust constructor params to match your entity
+        QuizzyLog log = new QuizzyLog(userId, currentQuiz.getQuizName(),
+                questionsPassed, questionsFailed
+        );
+
+        repository.insertQuizzyLog(log);
+    }
+
     private void setupButtonListeners(){
         buttonA.setOnClickListener(v -> checkAnswer("A"));
         buttonB.setOnClickListener(v -> checkAnswer("B"));
