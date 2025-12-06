@@ -128,14 +128,14 @@ public class QuizzyLogRepository {
 
     public void insertQuiz(Quiz quiz, Consumer<Long> callback) {
         QuizzyLogDatabase.databaseWriteExecutor.execute(() -> {
-            long id = quizDAO.insertQuiz(quiz);
+            long id = quizDAO.insert(quiz);
             callback.accept(id);
         });
     }
 
     public void insertQuestion(Question q) {
         QuizzyLogDatabase.databaseWriteExecutor.execute(() -> {
-            questionDAO.insertQuestion(q);
+            questionDAO.insert(q);
         });
     }
     public void updateQuiz(Quiz quiz) {
@@ -151,7 +151,7 @@ public class QuizzyLogRepository {
         QuizzyLogDatabase.databaseWriteExecutor.execute(() -> {
             questionDAO.deleteQuestionsForQuiz(quizId);
             for (Question q : newList) {
-                questionDAO.insertQuestion(q);
+                questionDAO.insert(q);
             }
         });
     }
