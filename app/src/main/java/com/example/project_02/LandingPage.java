@@ -36,7 +36,7 @@ public class LandingPage extends BaseActivity {
         // Code to wire QuizCodeActivity to Play Quiz button-Alex
         Button playQuizzesButton = findViewById(R.id.playQuizzesButton);
         playQuizzesButton.setOnClickListener(v -> {
-            Intent intent = new Intent(LandingPage.this, QuizCodeActivity.class);
+            Intent intent = new Intent(LandingPage.this, EnterCodeActivity.class);
             startActivity(intent);
         });
 
