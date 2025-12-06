@@ -47,6 +47,8 @@
     <string name="code_needed_to_access_test">Code needed to access test</string>
     <string name="code">Code</string>
     <string name="enter">Enter</string>
+    <string name="load_quiz">Load Quiz</string>
+    <string name="save_changes">Save Changes</string>
 
 
 </resources>

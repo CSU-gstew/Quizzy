@@ -8,7 +8,9 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class EnterCodeActivity extends AppCompatActivity{
+import com.google.android.material.appbar.MaterialToolbar;
+
+public class EnterCodeActivity extends BaseActivity{
     private EditText accessCodeEditText;
     private Button loginButton;
 
@@ -16,6 +18,9 @@ public class EnterCodeActivity extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz_code);
+
+        MaterialToolbar toolbar = findViewById(R.id.action_bar);
+        setupToolbar(toolbar); // sets up logout menu and user info
 
         accessCodeEditText = findViewById(R.id.AccessCodeEditText);
         loginButton = findViewById(R.id.loginButton);

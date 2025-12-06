@@ -67,7 +67,7 @@
 
             <Button
                 android:id="@+id/loadQuizButton"
-                android:text="Load Quiz"
+                android:text="@string/load_quiz"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
@@ -97,7 +97,7 @@
 
                 <Button
                     android:id="@+id/buttonAddQuestion"
-                    android:text="Add Question"
+                    android:text="@string/add_question"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
@@ -108,7 +108,7 @@
 
                 <Button
                     android:id="@+id/buttonSaveChanges"
-                    android:text="Save Changes"
+                    android:text="@string/save_changes"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
