@@ -13,7 +13,7 @@ import java.util.List;
 public interface QuestionDAO {
 
     @Insert
-    void insertQuestion(Question... question);
+    void insert(Question... question);
 
     @Query("SELECT * FROM question_table WHERE quizId = :quizId")
     LiveData<List<Question>> getQuestionsForQuiz(int quizId);

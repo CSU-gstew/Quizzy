@@ -60,6 +60,8 @@ public abstract class QuizzyLogDatabase extends RoomDatabase {
             Log.i(MainActivity.TAG, "DATABASE CREATED!");
             databaseWriteExecutor.execute(() -> {
                 UserDAO dao = INSTANCE.userDAO();
+                QuizDAO quizDao = INSTANCE.quizDAO();
+                QuestionDAO questionDao = INSTANCE.questionDAO();
                 dao.deleteAll();
 
                 // Admin Creation
@@ -73,6 +75,45 @@ public abstract class QuizzyLogDatabase extends RoomDatabase {
 
                 // Insert User into Database
                 dao.insert(testUser1);
+
+                Quiz quiz1 = new Quiz("testquiz_a", "11111");
+                long quiz1Id = quizDao.insert(quiz1);
+
+                questionDao.insert(
+                        new Question((int) quiz1Id,
+                                "What is the capital of France?",
+                                "London", "Berlin", "Paris", "Madrid",
+                                "C", "MCQ"),
+
+                        new Question((int) quiz1Id,
+                                "Which planet is known as the Red Planet?",
+                                "Earth", "Mars", "Venus", "Jupiter",
+                                "B", "MCQ"),
+
+                        new Question((int) quiz1Id,
+                                "How many continents are there on Earth?",
+                                "5", "6", "7", "8",
+                                "C", "MCQ")
+                );
+                Quiz quiz2 = new Quiz("testquiz_b", "22222");
+                long quiz2Id = quizDao.insert(quiz2);
+
+                questionDao.insert(
+                        new Question((int) quiz2Id,
+                                "What is 5 + 7?",
+                                "10", "11", "12", "13",
+                                "C", "MCQ"),
+
+                        new Question((int) quiz2Id,
+                                "What is 9 × 3?",
+                                "27", "28", "21", "24",
+                                "A", "MCQ"),
+
+                        new Question((int) quiz2Id,
+                                "What is 15 ÷ 5?",
+                                "2", "3", "4", "5",
+                                "B", "MCQ")
+                );
             });
         }
     };

@@ -14,7 +14,7 @@ import java.util.List;
 public interface QuizDAO {
 
     @Insert
-    long insertQuiz(Quiz quiz);
+    long insert(Quiz quiz);
 
     @Update
     void updateQuiz(Quiz quiz);
