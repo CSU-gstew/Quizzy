@@ -37,7 +37,7 @@
         android:layout_marginTop="112dp"
         android:gravity="center"
         android:paddingHorizontal="16dp"
-        android:text="@string/code_needed_to_access_test"
+        android:text="@string/please_enter_your_quiz_code"
         android:textSize="42sp"
         android:textStyle="bold"
         app:layout_constraintTop_toTopOf="parent"

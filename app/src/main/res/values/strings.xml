@@ -49,6 +49,7 @@
     <string name="enter">Enter</string>
     <string name="load_quiz">Load Quiz</string>
     <string name="save_changes">Save Changes</string>
+    <string name="please_enter_your_quiz_code">Please enter your quiz code</string>
 
 
 </resources>
